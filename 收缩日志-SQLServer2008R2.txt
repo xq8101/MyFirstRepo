@@ -1,0 +1,21 @@
+﻿USE [master]  
+GO  
+ALTER DATABASE [数据库名] SET RECOVERY SIMPLE WITH NO_WAIT  
+GO  
+ALTER DATABASE [数据库名] SET RECOVERY SIMPLE  
+GO  
+USE [数据库名]  
+GO  
+DBCC SHRINKFILE (N'[数据库日志文件名称]' , 0,TRUNCATEONLY)  
+GO  
+USE [master]  
+GO  
+ALTER DATABASE [数据库名] SET RECOVERY FULL WITH NO_WAIT  
+GO  
+ALTER DATABASE [数据库名] SET RECOVERY FULL  
+GO  
+  
+--查询指定数据库的日志文件名称  
+USE [数据库名]   
+GO  
+SELECT name FROM SYS.database_files WHERE type_desc='LOG'  
